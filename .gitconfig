@@ -1,0 +1,63 @@
+[branch]
+    sort = -committerdate
+[color]
+    ui = true
+[column]
+    ui = auto
+[commit]
+    gpgsign = true
+	verbose = true
+[core]
+    excludesfile = ~/.gitignore_global
+    pager = delta
+[credential]
+    helper = osxkeychain
+[delta]
+    navigate = true  # use n and N to move between diff sections
+    dark = true
+    line-numbers = true
+    side-by-side = true
+    syntax-theme = Nord
+[diff]
+    algorithm = histogram
+    colorMoved = plain
+    mnemonicPrefix = true
+    renames = true
+[fetch]
+	all = true
+    prune = true
+    pruneTags = true
+[ghq]
+    root = ~/ghq
+[gpg]
+	format = ssh
+[help]
+    autocorrect = prompt
+[init]
+    defaultBranch = main
+[interactive]
+    diffFilter = delta --color-only
+[merge]
+    conflictstyle = zdiff3
+[pull]
+    rebase = true
+[push]
+    default = simple
+    autoSetupRemote = true
+    followTags = true
+[rebase]
+    autoSquash = true
+    autoStash = true
+    updateRefs = true
+[rerere]
+	enabled = true
+    autoupdate = true
+[tag]
+	sort = version:refname
+[user]
+    name = tttanikawa
+    email = 13175394+tttanikawa@users.noreply.github.com
+[wt]
+    basedir = .worktrees
+    nocd = false
+    # hook = tmux neww -c \"$PWD\" -n \"$(basename -s .git `git remote get-url origin`):$(git branch --show-current)\"

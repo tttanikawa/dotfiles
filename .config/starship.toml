@@ -1,0 +1,11 @@
+command_timeout = 3000
+
+[kubernetes]
+disabled = false
+
+[time]
+disabled = true
+utc_time_offset = "9"
+
+[aws]
+disabled = true

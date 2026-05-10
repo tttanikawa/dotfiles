@@ -1,0 +1,77 @@
+{
+  "env": {
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
+    "API_TIMEOUT_MS": "600000"
+  },
+  "permissions": {
+    "allow": [
+      "Bash(find*)",
+      "Bash(gh pr diff*)",
+      "Bash(gh pr list*)",
+      "Bash(git branch*)",
+      "Bash(git diff*)",
+      "Bash(git grep*)",
+      "Bash(git status*)",
+      "Bash(git log*)",
+      "Bash(git rev-parse*)",
+      "Bash(ls*)",
+      "Bash(head*)",
+      "Bash(tail*)",
+      "Bash(cat*)",
+      "Bash(date*)",
+      "Bash(tree*)",
+      "Bash(./gradlew *)",
+      "Bash(jar*)",
+      "Bash(javap*)",
+      "Bash(npm *)"
+    ],
+    "deny": [
+      "Read(.env)",
+      "Read(.env.*)",
+      "Read(*.pem)",
+      "Read(*.crt)",
+      "Read(*.key)",
+      "Read(*.p12)",
+      "Read(*.pfx)",
+      "Read(**/secrets/**)",
+      "Read(**/.secrets/**)",
+      "Read(**/certificates/**)",
+      "Read(**/.certificates/**)",
+      "Read(id_rsa)",
+      "Read(id_dsa)",
+      "Read(id_ecdsa)",
+      "Read(id_ed25519)",
+      "Read(*.private)",
+      "Read(*.priv)",
+      "Bash(sudo:*)",
+      "Bash(rm -rf /)",
+      "Bash(rm -rf ~)",
+      "Bash(rm -rf ~/*)",
+      "Bash(rm -rf /*)",
+      "Bash(rm -rf:*)",
+      "Bash(rm -r:*)"
+    ],
+    "ask": [
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
+    ],
+    "defaultMode": "auto"
+  },
+  "model": "opus[1m]",
+  "statusLine": {
+    "type": "command",
+    "command": "python ~/.claude/statusline.py"
+  },
+  "enabledPlugins": {
+    "example-skills@anthropic-agent-skills": true
+  },
+  "extraKnownMarketplaces": {
+    "anthropic-agent-skills": {
+      "source": {
+        "source": "github",
+        "repo": "anthropics/skills"
+      }
+    }
+  },
+  "skipAutoPermissionPrompt": true
+}

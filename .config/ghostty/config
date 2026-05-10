@@ -1,0 +1,18 @@
+auto-update-channel = tip
+background-blur-radius = 20
+background-opacity = 0.90
+cursor-style = block
+cursor-style-blink = false
+font-family = SFMono Nerd Font
+font-size = 16
+keybind = option+backspace=text:\x1b\x7f
+keybind = shift+enter=text:\n
+macos-titlebar-style = transparent
+shell-integration-features = no-cursor
+theme = nord
+window-height = 48
+window-width = 192
+window-padding-balance = true
+window-padding-x = 24
+window-padding-y = 24
+window-save-state = always

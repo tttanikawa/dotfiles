@@ -1,0 +1,7 @@
+# dotfiles
+
+## Usage
+
+```bash
+make
+```

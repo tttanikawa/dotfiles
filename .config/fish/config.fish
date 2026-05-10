@@ -4,86 +4,74 @@ set fish_greeting
 set -x LC_ALL "en_US.UTF-8"
 set -x TERM xterm-256color
 
-# Alias
-alias ls 'ls -aG'
-alias cp 'cp -i'
-# alias rm 'rm -i'
-# alias mv 'mv -i'
-alias ... 'cd ../../'
-alias .... 'cd ../../../'
-# alias python 'python3'
-# alias pip 'pip3'
+# Abbreviations
+abbr --add ls 'ls -aG'
+abbr --add cp 'cp -i'
+abbr --add rm 'rm -i'
+abbr --add mv 'mv -i'
+abbr --add ... 'cd ../../'
+abbr --add .... 'cd ../../../'
+abbr --add kc kubectl
+abbr --add gitl 'git log --graph --decorate --pretty=oneline --abbrev-commit'
 
 # cd & ls
 function cd
-	builtin cd $argv
-	ls
-end
-
-function add_path
-	set ADDED_PATH $argv[1]
-	not contains $ADDED_PATH $PATH
-		and set -x PATH $ADDED_PATH $PATH
+  builtin cd $argv
+  ls
 end
 
 # PATH
-add_path /bin
-add_path /sbin
-add_path /usr/bin
-add_path /usr/sbin
-add_path /usr/local/bin
-# add_path /usr/local/sbin
-
-add_path /Users/ukyo/Library/Python/3.9/bin
-
-# python local
-# add_path $HOME/.local/bin
-
-# pyenv
-# set -x PYENV_ROOT $HOME/.pyenv
-# add_path $PYENV_ROOT/bin
-# . (pyenv init - | psub)
-
-# anaconda
-# add_path $HOME/opt/anaconda3/bin
-
-# add_path $HOME/.rbenv/bin
-# . (rbenv init - | psub)
-
-# powerline
-# powerline-daemon -q
-# set fish_function_path $fish_function_path $HOME/.local/lib/python3.7/site-packages/powerline/bindings/fish
-# powerline-setup
-
-# Qt
-# alias qmake '/usr/local/opt/qt5/bin/qmake'
+fish_add_path /bin
+fish_add_path /sbin
+fish_add_path /usr/bin
+fish_add_path /usr/sbin
+fish_add_path /usr/local/bin
+fish_add_path /opt/homebrew/bin
+fish_add_path /opt/homebrew/sbin
+fish_add_path $HOME/.local/bin
+fish_add_path $HOME/Applications/IntelliJ\ IDEA\ Ultimate.app/Contents/MacOS # for idea command
 
 # tmux
-# force 256 color
 alias tmux 'tmux -2'
 
-# for GNU Parallel
-source (which env_parallel.fish)
-
-# pushbullet-bash
-alias pushbullet $HOME/work/pushbullet-bash/pushbullet
-
-# NeoVim
-set -x XDG_CONFIG_HOME $HOME/.config
-
-# golang
+# Go
 set -x GOPATH $HOME/go
-add_path $GOPATH/bin
-
-# nodebrew
-add_path $HOME/.nodebrew/current/bin
+fish_add_path $GOPATH/bin
 
 # rust
-add_path $HOME/.cargo/bin
+fish_add_path $HOME/.cargo/bin
+source $HOME/.cargo/env.fish
+
+# krew
+fish_add_path $HOME/.krew/bin
 
 # starship
 starship init fish | source
 
-# pyenv
-status is-login; and pyenv init --path | source
-pyenv init - | source
+# fzf
+fzf --fish | source
+
+# open git worktree using fzf
+function find_git_worktree
+  commandline | read -l buffer
+  git wt | tail -n +2 | fzf --query "$buffer" --height=20 | awk '{print $(NF-1)}' | read -l selected_worktree
+  if test -n "$selected_worktree"
+    commandline "git wt $selected_worktree"
+    commandline -f execute
+  end
+  commandline -f repaint
+end
+bind \cs find_git_worktree
+
+# GPG
+set -gx GPG_TTY (tty)
+
+# Testcontainers
+set -x TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE /var/run/docker.sock
+set -x DOCKER_HOST "unix://$HOME/.colima/docker.sock"
+set -x TESTCONTAINERS_RYUK_DISABLED true
+
+codex completion fish | source
+git wt --init fish | source
+direnv hook fish | source
+zoxide init fish | source
