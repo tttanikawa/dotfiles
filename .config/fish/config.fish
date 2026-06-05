@@ -41,7 +41,9 @@ fish_add_path $GOPATH/bin
 
 # rust
 fish_add_path $HOME/.cargo/bin
-source $HOME/.cargo/env.fish
+if test -f $HOME/.cargo/env.fish
+  source $HOME/.cargo/env.fish
+end
 
 # krew
 fish_add_path $HOME/.krew/bin
