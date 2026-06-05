@@ -57,6 +57,7 @@
 [user]
     name = tttanikawa
     email = 13175394+tttanikawa@users.noreply.github.com
+    signingkey = ~/.ssh/id_ed25519_git_sign.pub
 [wt]
     basedir = .worktrees
     nocd = false

@@ -28,6 +28,7 @@ fish_add_path /usr/sbin
 fish_add_path /usr/local/bin
 fish_add_path /opt/homebrew/bin
 fish_add_path /opt/homebrew/sbin
+fish_add_path /opt/local/bin # for macports
 fish_add_path $HOME/.local/bin
 fish_add_path $HOME/Applications/IntelliJ\ IDEA\ Ultimate.app/Contents/MacOS # for idea command
 
@@ -71,6 +72,7 @@ set -x TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE /var/run/docker.sock
 set -x DOCKER_HOST "unix://$HOME/.colima/docker.sock"
 set -x TESTCONTAINERS_RYUK_DISABLED true
 
+mise activate fish | source
 codex completion fish | source
 git wt --init fish | source
 direnv hook fish | source

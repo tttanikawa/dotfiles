@@ -1,7 +1,8 @@
 [tools]
-node = "22"
+node = "26"
 python = "3.12"
 ruby = "3.2"
+usage = "latest"
 
 [settings]
 trusted_config_paths = ["~/ghq"]
